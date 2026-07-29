@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const notes = await getCollection('notes')
+
+const bookEntries = new Map<string, { name: string; chapters: number[]; latestDate: string }>()
+for (const note of notes) {
+  const name = note.data.book
+  const slug = name.toLowerCase().replace(/\s+/g, '-')
+  if (!bookEntries.has(slug)) {
+    bookEntries.set(slug, { name, chapters: [], latestDate: note.data.date })
+  }
+  const entry = bookEntries.get(slug)!
+  entry.chapters.push(note.data.chapter)
+  if (note.data.date > entry.latestDate) {
+    entry.latestDate = note.data.date
+  }
+}
+
+const books = [...bookEntries.entries()].sort(([, a], [, b]) =>
+  new Date(b.latestDate).getTime() - new Date(a.latestDate).getTime(),
+)
+---
+
+<Layout>
+  <p class="mb-12 text-center font-cinzel text-lg tracking-wide text-ink-light">
+    Notes by the venerable St. Reuben
+  </p>
+
+  {books.length === 0 ? (
+    <div class="rounded-lg border-2 border-dashed border-gold p-12 text-center">
+      <p class="font-cinzel text-xl text-ink-light">
+        No notes yet. Add a markdown file to <code class="rounded bg-parchment-dark px-2 py-1 font-mono text-sm">src/content/notes/</code> to get started.
+      </p>
+    </div>
+  ) : (
+    <div class="space-y-6">
+      {books.map(([slug, book]) => (
+        <section
+          key={slug}
+          class="border-2 border-double border-gold bg-parchment-dark/30 p-6"
+        >
+          <h2 class="mb-4 font-cinzel text-2xl text-ink">
+            <a href={`/${slug}/${book.chapters[0]}`} class="no-underline hover:text-oxblood">
+              {book.name}
+            </a>
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {book.chapters.sort((a, b) => a - b).map(ch => (
+              <a
+                href={`/${slug}/${ch}`}
+                class="inline-block rounded border border-gold/50 bg-parchment px-3 py-1 font-cinzel text-sm tracking-wider text-ink-light no-underline transition-colors hover:border-oxblood hover:text-oxblood"
+              >
+                {ch}
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )}
+</Layout>

@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import "@fontsource-variable/cinzel";
+@import "@fontsource-variable/source-serif-4";
+
+@theme {
+  --font-cinzel: "Cinzel Variable", "Cinzel", serif;
+  --font-source-serif: "Source Serif 4 Variable", "Source Serif 4", serif;
+  --color-parchment: #f4e8c1;
+  --color-parchment-dark: #e6d5a0;
+  --color-ink: #2c1810;
+  --color-ink-light: #5c3a28;
+  --color-oxblood: #8b0000;
+  --color-gold: #b8860b;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-parchment);
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  a {
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-oxblood);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-cinzel);
+    font-weight: 600;
+  }
+}
