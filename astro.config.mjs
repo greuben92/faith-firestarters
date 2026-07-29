@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://bible-notes.example.com',
+  site: 'https://greuben92.github.com/io',
+  base: '/faith-firestarters',
 
   vite: {
     plugins: [tailwindcss()],
