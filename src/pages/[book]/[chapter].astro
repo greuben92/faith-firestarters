@@ -29,7 +29,7 @@ const nextEntry = curIdx < sameBook.length - 1 ? sameBook[curIdx + 1] : null
 
 <Layout title={title}>
   <div class="mb-6">
-    <a href="/" class="font-cinzel text-sm tracking-wider text-ink-light no-underline hover:text-oxblood">
+    <a href="/faith-firestarters" class="font-cinzel text-sm tracking-wider text-ink-light no-underline hover:text-oxblood">
       &larr; Back to Books
     </a>
   </div>
@@ -54,7 +54,7 @@ const nextEntry = curIdx < sameBook.length - 1 ? sameBook[curIdx + 1] : null
       <div>
         {prevEntry && (
           <a
-            href={`/${prevEntry.data.book.toLowerCase().replace(/\s+/g, '-')}/${prevEntry.data.chapter}`}
+          href={`/faith-firestarters/${prevEntry.data.book.toLowerCase().replace(/\s+/g, '-')}/${prevEntry.data.chapter}`}
             class="font-cinzel text-sm tracking-wider text-ink-light no-underline hover:text-oxblood"
           >
             &larr; Chapter {prevEntry.data.chapter}
@@ -64,7 +64,7 @@ const nextEntry = curIdx < sameBook.length - 1 ? sameBook[curIdx + 1] : null
       <div>
         {nextEntry && (
           <a
-            href={`/${nextEntry.data.book.toLowerCase().replace(/\s+/g, '-')}/${nextEntry.data.chapter}`}
+          href={`/faith-firestarters/${nextEntry.data.book.toLowerCase().replace(/\s+/g, '-')}/${nextEntry.data.chapter}`}
             class="font-cinzel text-sm tracking-wider text-ink-light no-underline hover:text-oxblood"
           >
             Chapter {nextEntry.data.chapter} &rarr;

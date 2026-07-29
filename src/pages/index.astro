@@ -42,14 +42,14 @@ const books = [...bookEntries.entries()].sort(([, a], [, b]) =>
           class="border-2 border-double border-gold bg-parchment-dark/30 p-6"
         >
           <h2 class="mb-4 font-cinzel text-2xl text-ink">
-            <a href={`/${slug}/${book.chapters[0]}`} class="no-underline hover:text-oxblood">
+          <a href={`/faith-firestarters/${slug}/${book.chapters[0]}`} class="no-underline hover:text-oxblood">
               {book.name}
             </a>
           </h2>
           <div class="flex flex-wrap gap-2">
             {book.chapters.sort((a, b) => a - b).map(ch => (
               <a
-                href={`/${slug}/${ch}`}
+                  href={`/faith-firestarters/${slug}/${ch}`}
                 class="inline-block rounded border border-gold/50 bg-parchment px-3 py-1 font-cinzel text-sm tracking-wider text-ink-light no-underline transition-colors hover:border-oxblood hover:text-oxblood"
               >
                 {ch}
