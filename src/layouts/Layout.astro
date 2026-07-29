@@ -14,6 +14,14 @@ const { title } = Astro.props
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title ? `${title} — Faith Firestarters` : 'Faith Firestarters — Bible Study'}</title>
+    <link rel="icon" href="/faith-firestarters/favicon.ico" />
+    { title &&
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={`A commentary on ${title} by venerable St. Reuben`} />
+        <meta property="og:image" content={'/faith-firestarters/favicon.png'} />
+        <meta property="og:url" content={Astro.url} />
+    }
   </head>
   <body class="font-source-serif text-ink">
     <header class="border-b-4 border-double border-gold bg-parchment-dark/50">
